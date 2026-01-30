@@ -1,18 +1,19 @@
 package controller;
 
 import controller.dao.BusDAO;
-import model.Bus;
+import view.BusView;
 
 public class BusController {
 
-    BusDAO driverDao = new BusDAO();
+    BusDAO busDAO;
+    BusView busView;
 
-    BusController(){
-
+    BusController(BusView view) {
+        this.busView = view;
+        busDAO = new BusDAO();
     }
 
-    public void consultarConductor(int numDriver){
-        driverDao.consultarConductor(Integer.parseInt(numDriver));
+    public void consultarConductor(int numDriver) {
 
     }
 

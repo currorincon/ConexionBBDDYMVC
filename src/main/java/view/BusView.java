@@ -14,7 +14,6 @@ public class BusView extends JFrame {
         setBounds(200,200,800,800);
         setVisible(true);
 
-        txtBus.setText();
 
     }
 

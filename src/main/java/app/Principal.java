@@ -1,8 +1,11 @@
 package app;
 
+import controller.BusController;
+import controller.DriverController;
 import controller.dao.DriverDAO;
 import model.Conductor;
 import view.BusView;
+import view.DriverView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +20,24 @@ public class Principal {
 
 
     public static void main(String[] args) {
-//
+
+
+        JFrame ventanaPrincipal = new JFrame("Aucorsa");
+        ventanaPrincipal.setBounds(100,100,800,800);
+
+
+        DriverView vistaConductor = new DriverView();
+        DriverController controladorConductor = new DriverController(vistaConductor);
+        controladorConductor.consultarCosas();
+
+        ventanaPrincipal.add(vistaConductor);
+//        BusView vistaConductor = new BusView();
+//        BusController controladorConductor = new BusController();
+
+
+
+
+        //
 //        JFrame miVentana = new JFrame("Curro es mi primera ventana");
         ArrayList<Conductor> conductores = new ArrayList<>();
 
@@ -143,7 +163,7 @@ public class Principal {
 //
 
 
-        BusView vistaBus = new BusView();
+       // BusView vistaBus = new BusView();
 
         int opcion = 0;
 

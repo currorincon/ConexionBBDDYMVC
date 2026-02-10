@@ -2,10 +2,12 @@ package app;
 
 import controller.BusController;
 import controller.DriverController;
+import controller.PrincipalController;
 import controller.dao.DriverDAO;
 import model.Conductor;
 import view.BusView;
 import view.DriverView;
+import view.PrincipalView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,16 +23,24 @@ public class Principal {
 
     public static void main(String[] args) {
 
+        ArrayList<Conductor> conductores = new ArrayList<>();
+        DriverDAO driverDao = new DriverDAO();
 
-        JFrame ventanaPrincipal = new JFrame("Aucorsa");
-        ventanaPrincipal.setBounds(100,100,800,800);
+         PrincipalView viewPrincipal = new PrincipalView();
+         new PrincipalController(viewPrincipal);
+         viewPrincipal.setVisible(true);
 
 
-        DriverView vistaConductor = new DriverView();
-        DriverController controladorConductor = new DriverController(vistaConductor);
-        controladorConductor.consultarCosas();
 
-        ventanaPrincipal.add(vistaConductor);
+//        JFrame ventanaPrincipal = new JFrame("Aucorsa");
+//        ventanaPrincipal.setBounds(100,100,800,800);
+//
+//
+//        DriverView vistaConductor = new DriverView();
+//        DriverController controladorConductor = new DriverController(vistaConductor);
+//        controladorConductor.consultarCosas();
+//
+//        ventanaPrincipal.add(vistaConductor);
 //        BusView vistaConductor = new BusView();
 //        BusController controladorConductor = new BusController();
 
@@ -39,9 +49,7 @@ public class Principal {
 
         //
 //        JFrame miVentana = new JFrame("Curro es mi primera ventana");
-        ArrayList<Conductor> conductores = new ArrayList<>();
 
-        DriverDAO driverDao = new DriverDAO();
 //
 //        miVentana.setTitle("Aucorsa");
 //        miVentana.setBounds(200,200, 800,600);

@@ -4,9 +4,40 @@ import controller.db.ConexionDB;
 import model.Conductor;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DriverDAO {
 
+    public ArrayList<Conductor> consultarConductores(){
+
+
+        String sql = "select numdriver, name, surname from Driver";
+
+        ArrayList<Conductor> conductores = new ArrayList<>();
+
+        try (Connection con = ConexionDB.getConexion()) {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+
+            while(rs.next()){
+                Conductor conductorConsultado = new Conductor();
+                conductorConsultado.setNombre(rs.getString("name"));
+                conductorConsultado.setApellidos(rs.getString("surname"));
+                conductorConsultado.setNumeroConductor(rs.getInt("numdriver"));
+                conductores.add(conductorConsultado);
+            }
+
+            return conductores;
+
+
+        } catch (SQLException e) {
+            System.out.println("Error al cargar la BBDD consulte con el administrador");
+            throw new RuntimeException(e);
+        }
+
+    }
 
     public Conductor consultarConductor(int numDriver) {
 
@@ -42,4 +73,29 @@ public class DriverDAO {
 
     }
 
+    public boolean addDriver(Conductor conductor) {
+
+        String sql = "INSERT INTO Driver VALUES (?,?,?)";
+
+        try (Connection con = ConexionDB.getConexion()) {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1,conductor.getNumeroConductor());
+            ps.setString(2, conductor.getNombre());
+            ps.setString(3,conductor.getApellidos());
+
+
+            int rowAffected = ps.executeUpdate();
+
+            if(rowAffected > 0 )
+                return true;
+            else return false;
+
+
+        } catch (SQLException e) {
+            System.out.println("Error al cargar la BBDD consulte con el administrador");
+            throw new RuntimeException(e);
+        }
+
+    }
 }

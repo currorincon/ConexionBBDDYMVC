@@ -27,28 +27,7 @@ public class PrincipalController {
     private void addDriver() {
 
         AddDriverView addPanel = new AddDriverView();
-
-        addPanel.getBtnAdd().addActionListener(e -> {
-
-            Conductor conductor = new Conductor();
-
-            conductor.setNombre(addPanel.getNombre().getText());
-            conductor.setApellidos(addPanel.getApellidos().getText());
-            conductor.setNumeroConductor(Integer.parseInt(addPanel.getNumDriver().getText()));
-
-            try{
-
-                boolean addSuccess  = driverDAO.addDriver(conductor);
-                addPanel.dispose();
-            } catch (Exception err) {
-                throw new RuntimeException(err);
-            }
-
-
-
-        });
-
-
+        new AddDriverController(addPanel);
 
     }
 

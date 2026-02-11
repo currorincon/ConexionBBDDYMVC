@@ -98,4 +98,26 @@ public class DriverDAO {
         }
 
     }
+
+    public void eliminarConductor(int numeroConductor) {
+
+        String sql = "DELETE FROM Driver WHERE numDriver = ?";
+
+        try (Connection con = ConexionDB.getConexion()) {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, numeroConductor);
+
+            int rowAffected = ps.executeUpdate();
+
+            if(rowAffected > 0 )
+                System.out.println("Conductor eliminado correctamente");
+            else System.out.println("No se ha podido eliminar el conductor");
+        }
+        catch (SQLException e) {
+            System.out.println("Error al cargar la BBDD consulte con el administrador");
+            throw new RuntimeException(e);
+        }
+
+    }
 }

@@ -16,6 +16,7 @@ public class PrincipalView extends JFrame {
 
     private final JLabel lblEstado = new JLabel("Aucorsa");
 
+
     private DefaultTableModel modeloTabla;
     private JTable vistaTabla;
 
@@ -49,7 +50,13 @@ public class PrincipalView extends JFrame {
         add(bot,BorderLayout.SOUTH);
 
         modeloTabla = new DefaultTableModel(new String[]{"Numero", "Nombre", "Apellidos"}, 0);
+
         vistaTabla = new JTable(modeloTabla);
+        vistaTabla.setFillsViewportHeight(true);
+        vistaTabla.setRowSelectionAllowed(true);
+        vistaTabla.setColumnSelectionAllowed(false);
+        vistaTabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
 
         add(new JScrollPane(vistaTabla),BorderLayout.CENTER);
 
@@ -75,6 +82,23 @@ public class PrincipalView extends JFrame {
         return lblEstado;
     }
 
+    public DefaultTableModel getModeloTabla() {
+        return modeloTabla;
+    }
+
+    public void setModeloTabla(DefaultTableModel modeloTabla) {
+        this.modeloTabla = modeloTabla;
+    }
+
+    public JTable getVistaTabla() {
+        return vistaTabla;
+    }
+
+    public void setVistaTabla(JTable vistaTabla) {
+        this.vistaTabla = vistaTabla;
+    }
+
+
     public void cargarConductores(ArrayList<Conductor> conductores) {
 
         modeloTabla.setRowCount(0);
@@ -86,4 +110,5 @@ public class PrincipalView extends JFrame {
 
 
     }
+
 }

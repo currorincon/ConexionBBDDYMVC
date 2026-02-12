@@ -13,6 +13,8 @@ public class PrincipalView extends JFrame {
     private final JButton btnBuscar = new JButton("Buscar");
     private final JButton btnBorrar = new JButton("Borrar");
     private final JButton btnRefrescar = new JButton("Refrescar");
+    private final JButton btnModificar = new JButton("Modificar");
+
 
     private final JLabel lblEstado = new JLabel("Aucorsa");
 
@@ -35,6 +37,7 @@ public class PrincipalView extends JFrame {
 
         top.add(btnBorrar);
         top.add(btnRefrescar);
+        top.add(btnModificar);
         add(top, BorderLayout.NORTH);
 
 
@@ -49,14 +52,18 @@ public class PrincipalView extends JFrame {
         bot.add(lblEstado);
         add(bot,BorderLayout.SOUTH);
 
-        modeloTabla = new DefaultTableModel(new String[]{"Numero", "Nombre", "Apellidos"}, 0);
+        modeloTabla = new DefaultTableModel(new String[]{"Numero", "Nombre", "Apellidos"}, 0){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 
         vistaTabla = new JTable(modeloTabla);
         vistaTabla.setFillsViewportHeight(true);
         vistaTabla.setRowSelectionAllowed(true);
         vistaTabla.setColumnSelectionAllowed(false);
         vistaTabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
 
         add(new JScrollPane(vistaTabla),BorderLayout.CENTER);
 
@@ -111,4 +118,7 @@ public class PrincipalView extends JFrame {
 
     }
 
+    public JButton getBtnModificar() {
+        return btnModificar;
+    }
 }

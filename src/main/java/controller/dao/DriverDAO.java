@@ -1,5 +1,6 @@
 package controller.dao;
 
+import com.mysql.cj.conf.ConnectionPropertiesTransform;
 import controller.db.ConexionDB;
 import model.Conductor;
 
@@ -99,7 +100,7 @@ public class DriverDAO {
 
     }
 
-    public void eliminarConductor(int numeroConductor) {
+    public boolean eliminarConductor(int numeroConductor) throws SQLException {
 
         String sql = "DELETE FROM Driver WHERE numDriver = ?";
 
@@ -111,13 +112,33 @@ public class DriverDAO {
             int rowAffected = ps.executeUpdate();
 
             if(rowAffected > 0 )
-                System.out.println("Conductor eliminado correctamente");
-            else System.out.println("No se ha podido eliminar el conductor");
+                return true;
+            else return false;
         }
         catch (SQLException e) {
             System.out.println("Error al cargar la BBDD consulte con el administrador");
-            throw new RuntimeException(e);
+            throw new SQLException(e);
         }
+
+    }
+
+    public boolean modificarConductor(Conductor conductorModificar) throws SQLException {
+
+            Connection con = ConexionDB.getConexion();
+            String sql = "UPDATE Driver SET name = ?, surname = ? " +
+                    "WHERE numdriver = ?";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1,conductorModificar.getNombre());
+            ps.setString(2,conductorModificar.getApellidos());
+            ps.setInt(3, conductorModificar.getNumeroConductor());
+
+            int rowAffected = ps.executeUpdate();
+
+            if(rowAffected == 0)
+                return false;
+            else return true;
+
 
     }
 }

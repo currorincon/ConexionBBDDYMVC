@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 
-public class DriverView extends JFrame {
+public class DriverView extends JPanel {
 
     public JButton bntBuscar;
     public JTextField txtNumDriver;
@@ -10,9 +10,8 @@ public class DriverView extends JFrame {
 
     public DriverView(){
         //super("Vista Conductor");
-        setTitle("Vista Conductor");
+
         setBounds(600,600,800,400);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         bntBuscar = new JButton("Buscar");
         bntBuscar.setSize(100,50);

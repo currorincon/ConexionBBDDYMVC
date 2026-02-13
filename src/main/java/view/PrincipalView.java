@@ -52,12 +52,7 @@ public class PrincipalView extends JFrame {
         bot.add(lblEstado);
         add(bot,BorderLayout.SOUTH);
 
-        modeloTabla = new DefaultTableModel(new String[]{"Numero", "Nombre", "Apellidos"}, 0){
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
+        modeloTabla = new DefaultTableModel(new String[]{"Numero", "Nombre", "Apellidos"}, 0);
 
         vistaTabla = new JTable(modeloTabla);
         vistaTabla.setFillsViewportHeight(true);

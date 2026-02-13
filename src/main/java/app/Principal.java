@@ -2,12 +2,11 @@ package app;
 
 import controller.BusController;
 import controller.DriverController;
+import controller.MainController;
 import controller.PrincipalController;
 import controller.dao.DriverDAO;
 import model.Conductor;
-import view.BusView;
-import view.DriverView;
-import view.PrincipalView;
+import view.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,12 +22,20 @@ public class Principal {
 
     public static void main(String[] args) {
 
+
+        AucorsaView mainView = new AucorsaView();
+        new MainController(mainView);
+        mainView.setVisible(true);
+
+
+//        MainView mainView = new MainView();
+
         ArrayList<Conductor> conductores = new ArrayList<>();
         DriverDAO driverDao = new DriverDAO();
 
-         PrincipalView viewPrincipal = new PrincipalView();
-         new PrincipalController(viewPrincipal);
-         viewPrincipal.setVisible(true);
+//         PrincipalView viewPrincipal = new PrincipalView();
+//         new PrincipalController(viewPrincipal);
+//         viewPrincipal.setVisible(true);
 
 
 
